@@ -1,7 +1,7 @@
 {
   "name": "thegio",
   "version": "0.1.0",
-  "homepage": "http://360.goku.agency/the-gio/",
+  "homepage": "http://360.goku.agency/wind/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -12,8 +12,9 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-krpano-hooks": "^2.0.0",
     "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
@@ -44,5 +45,12 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jksofm/thegio360.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jksofm/thegio360/issues"
+  }
 }

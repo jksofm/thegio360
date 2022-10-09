@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import Image360 from '../components/Image360';
 import Menu from '../components/Menu';
@@ -9,41 +9,64 @@ import image1 from "../image/1.jpg";
 import image3 from "../image/3.jpg";
 import image4 from "../image/4.jpg";
 import Guide from '../components/Guide';
+import useKrpano from 'react-krpano-hooks'
 
-function HouseSample({guide,handleGuide}) {
-  const [image,setImage] = useState(image3)
+
+function HouseSample({guide,handleGuide,loadnewscene,setCurrentscene,currentscene}) {
+  const [image,setImage] = useState("../file360/wind-360/index.html?startscene=scene_landscape")
+  // const [currentscene,setCurrentscene] = useState("scene_pool");
+  const { containerRef,callKrpano,setKrpano } = useKrpano({
+    globalFunctions: {
+      logNewScene: (scene) => {
+        console.log('New scene: ', scene)
+      },
+    },
+  })
+  useEffect(()=>{},[
+    callKrpano(`loadscene(${currentscene}, null, MERGE);`),
+    // setKrpano(`layer[${currentscene}]`,0)
+
+ ],[currentscene])
+  useEffect(()=>{},[
+    loadnewscene(currentscene)
+ ],[currentscene])
+ useEffect(()=>{
+  setCurrentscene("scene_landscape")
+  console.log('river')
+},[])
+
   const handleClick = (value) =>{
     setImage(value)
 }
+
+
+
   const data = [
     {
       id: 1,
-      image: image3,
-      text: "Hồ bơi"
+      
+      text: "Căn 1PN",
+      url: "../file360/wind-360/index.html?startscene=scene_landscape",
+      scene: 'scene_landscape'
+
     },
     {
       id: 2,
-      image: image4,
-      text: "Công viên"
+    
+      text: "Căn 2PN",
+      url: "../file360/wind-360/index.html?startscene=scene_pool_night",
+      scene: 'scene_pool_night'
     }
     ,
-    {
-      id: 3,
-      image: image1,
-      text: "Khu Vui Chơi Trẻ Em"
-    },
-    {
-      id: 4,
-      image: image2,
-      text: "Trường mầm non"
-    }
+    
+   
   ]
   return (
     <Wrapper>
-    <Image360 url={image} />
-    <Mode data={data} currentImage={image} handleClick={handleClick} />
-    <Menu handleGuide={handleGuide} />
-    {guide &&  <Guide guide={guide} handleGuide={handleGuide} /> }
+    <Image360 containerRef={containerRef} url={image} />
+    <Mode setCurrentscene={setCurrentscene} loadnewscene={loadnewscene} data={data} currentImage={image} width="20%" handleClick={handleClick} />
+
+    {/* {guide &&  <Guide guide={guide} handleGuide={handleGuide} /> } */}
   </Wrapper>
   )
 }

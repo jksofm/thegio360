@@ -1,14 +1,18 @@
 import React from 'react'
 import styled from "styled-components";
 
-function Mode({data,handleClick,currentImage}) {
+function Mode({data,handleClick,currentImage,width,setCurrentscene}) {
+  console.log("Hello Mode")
   return (
-    <Wrapper>
+    <Wrapper width= {width}>
           
         {data.map((item)=>{
                return (
 
-        <div className={currentImage===item.image? "mode-item active" : "mode-item"} onClick={()=>handleClick(item.image)}>
+        <div className={currentImage===item.url? "mode-item active" : "mode-item"} onClick={()=>{
+          handleClick(item.url);
+          setCurrentscene(item.scene)
+        }}>
           <h3>{item.text}</h3>
         </div>
                )
@@ -20,9 +24,9 @@ function Mode({data,handleClick,currentImage}) {
 }
 const Wrapper = styled.div`
  
-  
-    position: absolute;
-    width: 40.57%;
+    z-index: 1000;
+    position: fixed;
+    width: ${props => props.width}  ;
     height: 6.57%;
     top: 5%;
     left: 50%;

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Guide from '../components/Guide'
 import Image360 from '../components/Image360'
 import Menu from '../components/Menu'
-import image1 from '../image/1.jpg'
+import sauna from '../image/sauna.jpg'
 
 
 function Home({guide,handleGuide}) {
@@ -12,8 +12,8 @@ function Home({guide,handleGuide}) {
     <Wrapper>
       {guide &&  <Guide guide={guide} handleGuide={handleGuide} /> }
      
-      <Image360 url={image1} playbtn/>
-      <Menu handleGuide={handleGuide} />
+      <Image360 imagenormal url={sauna} playbtn/>
+      
     </Wrapper>
   )
 }

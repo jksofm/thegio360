@@ -11,7 +11,7 @@ function Gallery({guide,handleGuide}) {
     <Wrapper>
          {guide &&  <Guide guide={guide} handleGuide={handleGuide} /> }
       <Image360gallery />
-      <Menu handleGuide={handleGuide}/>
+     
     </Wrapper>
   )
 }

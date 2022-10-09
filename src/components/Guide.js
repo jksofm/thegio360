@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import handicon from "../icon/handicon.png"
 import mouseicon from "../icon/mouseicon.png"
+import guideimage from "../image/guide.png"
 
 function Guide({ handleGuide }) {
+ 
+  useEffect(()=>{
+    console.log("guide")
+  setTimeout(()=>{
+    handleGuide(true)
+  },1000)
+  },[])
   return (
     <Wrapper>
-      <div className="layer"></div>
-      <div className="modal">
+      <div className="layer" onClick={() => handleGuide(false)}></div>
+      <img className="guide" onClick={() => handleGuide(false)} src={guideimage} alt="Guide" />
+      {/* <div className="modal">
         <h1>HƯỚNG DẪN THAO TÁC</h1>
         <div className="action">
-        <img className="handicon" src={handicon} />
+        <img alt="handicon" className="handicon" src={handicon} />
         <span>hoặc</span>
-        <img className="mouseicon" src={mouseicon} />
+        <img alt="mouseicon" className="mouseicon" src={mouseicon} />
 
 
         </div>
@@ -22,7 +31,7 @@ function Guide({ handleGuide }) {
         <button onClick={() => handleGuide(false)} className="btn">
           Đã hiểu
         </button>
-      </div>
+      </div> */}
     </Wrapper>
   );
 }
@@ -35,7 +44,19 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  transition: all 0.4s linear;
+  
+  .guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30.9%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 100;
+    cursor: pointer;
+    animation : guideshow 0.7s;
+
+
+  }
   .layer {
     height: 100%;
     position: absolute;
@@ -46,6 +67,8 @@ const Wrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 100;
   transition: all 0.4s linear;
+  animation : guideshow 0.7s;
+
 
   }
   .mouseicon {
@@ -79,7 +102,7 @@ const Wrapper = styled.div`
     text-align: center;
     padding: 25px;
 
-    h1 {
+    /* h1 {
       font-size: 24px;
       font-weight: 700;
       text-align: center;
@@ -107,6 +130,19 @@ const Wrapper = styled.div`
       Align: Center;
       Vertical align: Center;
       Letter spacing: 4%;
+    } */
+  }
+  @keyframes guideshow {
+    from{
+      /* transform: translateY(-50%); */
+      visibility: hidden;
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+   visibility: visible;
+   /* transform: translateY(0); */
+
     }
   }
 `;
